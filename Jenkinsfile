@@ -11,7 +11,7 @@ pipeline {
             steps {
                 git url: 'https://github.com/tmreddy/Java-Jenkins.git', branch: 'main'
                 sh '''
-                    echo "=== Repository contents ==="
+                    echo "=== Repo Structure ==="
                     pwd
                     ls -R
                 '''
@@ -20,17 +20,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('src') {
-                    sh 'mvn clean compile'
-                }
+                sh 'mvn clean compile'
             }
         }
 
         stage('Test') {
             steps {
-                dir('src') {
-                    sh 'mvn test'
-                }
+                sh 'mvn test'
             }
             post {
                 always {
@@ -41,9 +37,7 @@ pipeline {
 
         stage('Package') {
             steps {
-                dir('src') {
-                    sh 'mvn package'
-                }
+                sh 'mvn package'
             }
             post {
                 success {
