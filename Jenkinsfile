@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.9.6-eclipse-temurin-17'
+            args '-v /root/.m2:/root/.m2'  // optional: cache Maven dependencies
+        }
+    }
 
     stages {
         stage('Checkout') {
@@ -8,7 +13,7 @@ pipeline {
             }
         }
 
-        stage('Verify Maven & Java') {
+        stage('Verify Tools') {
             steps {
                 sh 'java -version'
                 sh 'mvn -v'
@@ -46,10 +51,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Build succeeded!'
+            echo '✅ Build succeeded inside Docker!'
         }
         failure {
-            echo '❌ Build failed!'
+            echo '❌ Build failed inside Docker!'
         }
     }
 }
