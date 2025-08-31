@@ -10,7 +10,11 @@ pipeline {
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/tmreddy/Java-Jenkins.git', branch: 'main'
-                sh 'ls -R'  // debug: verify where pom.xml is
+                sh '''
+                    echo "=== Repository contents ==="
+                    pwd
+                    ls -R
+                '''
             }
         }
 
