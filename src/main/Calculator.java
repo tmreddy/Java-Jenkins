@@ -1,4 +1,6 @@
 package com.example.app;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Calculator {
     public int add(int a, int b) {
