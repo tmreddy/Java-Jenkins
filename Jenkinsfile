@@ -7,10 +7,10 @@ pipeline {
   }
 
   stages {
-    stage('Checkout') {
+    stage('Checkout & Structure') {
       steps {
         git url: 'https://github.com/tmreddy/Java-Jenkins.git', branch: 'main'
-        sh 'ls -R .'   // debug: show project structure
+        sh 'ls -R .'
       }
     }
 
@@ -23,7 +23,7 @@ pipeline {
     stage('Test') {
       steps {
         sh 'mvn test'
-        junit 'target/surefire-reports/*.xml'   // ✅ correct path
+        junit 'target/surefire-reports/*.xml'
       }
     }
 
@@ -40,7 +40,7 @@ pipeline {
   }
 
   post {
-    success { echo '✅ Build + tests succeeded!' }
+    success { echo '✅ Build & tests passed!' }
     failure { echo '❌ Build or tests failed!' }
   }
 }
