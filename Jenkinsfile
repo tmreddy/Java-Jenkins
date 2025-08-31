@@ -25,15 +25,14 @@ pipeline {
         }
 
         stage('Test') {
-            steps {
+        steps {
+            dir('src') {
                 sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'src/target/surefire-reports/*.xml'
-                }
+                junit 'target/surefire-reports/*.xml'
             }
         }
+    }
+
 
         stage('Package') {
             steps {
