@@ -1,5 +1,6 @@
 Install Required Plugins
 
+
 Go to Jenkins Dashboard → Manage Jenkins → Plugins → Available plugins. Install:
 
 Pipeline: Docker (docker-workflow plugin)
